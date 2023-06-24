@@ -4,6 +4,9 @@ import 'dart:io';
 
 import 'package:awesome_notifications_fcm/awesome_notifications_fcm.dart';
 import 'package:http/http.dart';
+  /// *********************************************
+  ///  You Should Use Your  Service Key From Firebase Project  
+  /// *********************************************
 
 class MessageChat {
   /// *********************************************
@@ -65,7 +68,7 @@ class MessageChat {
     final headers = {
       'content-type': 'application/json',
       'Authorization':
-          'key=AAAAninzEzc:APA91bH1k4UPlUYVI7HOV7kE8yIr2mCMr5LGmN0y2GpP6ac01t32yRDyUR3JEZvZYlbebq_n9MqaibkD54dIVYCUOk6jQHcJCOsr4p6OQBt-GJk-bKmhs73_dTbQI7L6qoruJUcWz4Nt'
+          'key=<<Service Key>>'
     };
 
     final response = await post(Uri.parse(postUrl),
@@ -105,7 +108,7 @@ class MessageChat {
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.authorizationHeader:
-                'key=AAAAninzEzc:APA91bH1k4UPlUYVI7HOV7kE8yIr2mCMr5LGmN0y2GpP6ac01t32yRDyUR3JEZvZYlbebq_n9MqaibkD54dIVYCUOk6jQHcJCOsr4p6OQBt-GJk-bKmhs73_dTbQI7L6qoruJUcWz4Nt'
+                'key= <<Service Key>>'
           },
           body: jsonEncode(body));
       log('Response status: ${res.statusCode}');
@@ -188,7 +191,7 @@ class MessageChat {
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.authorizationHeader:
-                'key=AAAAninzEzc:APA91bH1k4UPlUYVI7HOV7kE8yIr2mCMr5LGmN0y2GpP6ac01t32yRDyUR3JEZvZYlbebq_n9MqaibkD54dIVYCUOk6jQHcJCOsr4p6OQBt-GJk-bKmhs73_dTbQI7L6qoruJUcWz4Nt'
+                'key= <<Service Key>>'
           },
           body: jsonEncode(body));
       log('Response status: ${res.statusCode}');
