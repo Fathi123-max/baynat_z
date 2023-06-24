@@ -80,13 +80,13 @@ class MessageChat {
   /// *********************************************
 
   /// METHODS TO  SEND NOTIFICATION  TO SPECIFIC  USER
-  static Future<void> sendPushNotification(
+  static Future<void> sendSimplePushNotification(
       {required String bodyOfNotification,
-      required String titleOfNotification}) async {
+      required String titleOfNotification,
+      required String otherUserToken}) async {
     try {
       final body = {
-        "to":
-            "fDCBslUyTRS90eBRHLYLts:APA91bFU98mjAEId3NJjS66uhdvVVouC93Bn1PaCvPif8oynoBU5wimXiyFTdBOA1KCaNGYkfiTrRHdx_NRs0NFH4g0LNkJQrBicoCPUwkeu0hGVmj-0krmWz6dn6h31K1XIQ-kV7c1d",
+        "to": otherUserToken,
         "notification": {
           "title": titleOfNotification, //our name should be send
           "body": bodyOfNotification,
@@ -109,11 +109,11 @@ class MessageChat {
 
   static Future<void> sendAdvancedPushNotification(
       {required String bodyOfNotification,
-      required String titleOfNotification}) async {
+      required String titleOfNotification,
+      required String otherUserToken}) async {
     try {
       final body = {
-        "to":
-            "fnjjhWGiTwK7BGTi4SroXH:APA91bFeqcb2lyOwdiJ81auujo1VCyeQufRWPd6uRG2HRNwMycP0sk6Om7jSXdQza1B5Mnab-PEkOYZbTffNTdTVGycA9KTzKq07Q3bdDEiaIqjUZ3U2n0dj_KGKwTZYNkdWItswmBXs",
+        "to": otherUserToken,
         "priority": "high",
         "mutable_content": true,
         "notification": {

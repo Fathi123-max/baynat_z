@@ -1,7 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
-import '../controller/notifcation_controller.dart';
+import '../notifcation_controller/get_notifcation_controller.dart';
 import 'home_page.dart';
 import 'notifcation_page.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
-  static Color mainColor = const Color(0xFF9D50DD);
+  static Color mainColor = Colors.green;
 
   @override
   State<MyApp> createState() => _AppState();
@@ -36,9 +36,8 @@ class _AppState extends State<MyApp> {
 
   List<Route<dynamic>> onGenerateInitialRoutes(String initialRouteName) {
     List<Route<dynamic>> pageStack = [];
-    pageStack.add(MaterialPageRoute(
-        builder: (_) =>
-            const MyHomePage(title: 'Awesome Notifications FCM Example App')));
+    pageStack.add(
+        MaterialPageRoute(builder: (_) => const MyHomePage(title: 'Bayanatz')));
     if (initialRouteName == routeNotification &&
         NotificationController().initialAction != null) {
       pageStack.add(MaterialPageRoute(
@@ -52,8 +51,7 @@ class _AppState extends State<MyApp> {
     switch (settings.name) {
       case routeHome:
         return MaterialPageRoute(
-            builder: (_) => const MyHomePage(
-                title: 'Awesome Notifications FCM Example App'));
+            builder: (_) => const MyHomePage(title: 'Bayanatz'));
 
       case routeNotification:
         ReceivedAction receivedAction = settings.arguments as ReceivedAction;
@@ -66,7 +64,7 @@ class _AppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Awesome Notifications - Simple Example',
+      title: 'Bayanatz',
       navigatorKey: MyApp.navigatorKey,
       onGenerateInitialRoutes: onGenerateInitialRoutes,
       onGenerateRoute: onGenerateRoute,

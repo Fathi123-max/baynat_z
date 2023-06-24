@@ -1,7 +1,7 @@
 import 'package:byanat_z/view/main_page.dart';
 import 'package:flutter/material.dart';
 
-import 'controller/notifcation_controller.dart';
+import 'notifcation_controller/get_notifcation_controller.dart';
 
 Future<void> main() async {
   await initialization();

@@ -1,7 +1,8 @@
+import 'package:byanat_z/view/test.dart';
 import 'package:flutter/material.dart';
 
-import '../controller/notifcation_controller.dart';
-import '../notifcation_controller/send_notifcation.dart';
+import '../notifcation_controller/get_notifcation_controller.dart';
+import '../notifcation_controller/send_notifcation_controller.dart';
 
 ///  *********************************************
 ///     HOME PAGE
@@ -26,10 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(NotificationController().nativeToken);
-    print("=========================");
+    debugPrint(NotificationController().nativeToken);
+
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Center(
@@ -37,45 +39,87 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Firebase Token:',
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                NotificationController().firebaseToken,
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Native Token:',
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                NotificationController().nativeToken,
-              ),
-            ),
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                'Push the button to create a new local notification or reset the badge counter',
+                ''' First Task''',
               ),
             ),
-            TextField(
-              controller: editingController,
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                ''' 
+Marketing notifications to mass-users for promoting services like
+promotions, coupons, sales, reminders to use certain features or services.
+                ''',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                ''' 
+In Firebase  we use Topic Concept   ''',
+              ),
+            ),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    ''' 
+Enter Topic Name   ''',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                  width: 100,
+                  child: TextField(
+                    controller: editingController,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            await MessageChat.subscribeToTopic(
+                                topic: editingController.text);
+                          },
+                          child: const Text("Subscribe to topic  ")),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SubscribeToTopicPage(),
+                            ));
+                          },
+                          child: const Text("UNSubscribe to topic  ")),
+                    ),
+                  ],
+                )
+              ],
             ),
             ElevatedButton(
                 onPressed: () async {
-                  MessageChat.sendPushNotification(
-                      bodyOfNotification: '', titleOfNotification: '');
+                  MessageChat.sendSimplePushNotification(
+                      bodyOfNotification: '',
+                      titleOfNotification: '',
+                      otherUserToken: '');
                 },
                 child: const Text("SendMessage")),
             ElevatedButton(
                 onPressed: () async {
-                  MessageChat.sendPushNotification(
-                      bodyOfNotification: "", titleOfNotification: "");
+                  MessageChat.sendSimplePushNotification(
+                      bodyOfNotification: "",
+                      titleOfNotification: "",
+                      otherUserToken: '');
                 },
                 child: const Text("send to ")),
             ElevatedButton(
