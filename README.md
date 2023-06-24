@@ -33,7 +33,6 @@ This app includes the following features:
 ## Video Preview
 
 
-https://youtu.be/-nmFFbrT3Is
 
 [![Watch the video](https://github.com/Fathi123-max/baynat_z/blob/main/Screenshot%202023-06-24%20at%2011.22.52.png)](https://youtu.be/-nmFFbrT3Is)
 [![Watch the video](https://github.com/Fathi123-max/baynat_z/blob/main/Screenshot%202023-06-24%20at%2011.23.30.png)](https://youtu.be/IXQJMVYhc9I
