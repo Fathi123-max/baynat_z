@@ -38,7 +38,7 @@ class NotificationController extends ChangeNotifier {
   /// *********************************************
   ///   INITIALIZATION METHODS
   /// *********************************************
-
+// The  initializeLocalNotifications  and  initializeRemoteNotifications  methods are used to set up the notification channels and initialize the Firebase and AwesomeNotifications services.
   static Future<void> initializeLocalNotifications(
       {required bool debug}) async {
     await AwesomeNotifications().initialize(
@@ -85,6 +85,7 @@ class NotificationController extends ChangeNotifier {
         debug: debug);
   }
 
+//The  startListeningNotificationEvents  method sets up the listeners for notification actions, such as when a user interacts with a notification.
   static Future<void> startListeningNotificationEvents() async {
     AwesomeNotifications()
         .setListeners(onActionReceivedMethod: onActionReceivedMethod);
@@ -103,7 +104,6 @@ class NotificationController extends ChangeNotifier {
     //     msg: 'Notification action launched app: $receivedAction',
     //   backgroundColor: Colors.deepPurple
     // );
-    print('Notification action launched app: $receivedAction');
   }
 
   @pragma('vm:entry-point')
@@ -119,20 +119,14 @@ class NotificationController extends ChangeNotifier {
   ///  *********************************************
   ///     REMOTE NOTIFICATION EVENTS
   ///  *********************************************
-
-  /// Use this method to execute on background when a silent data arrives
+// The  mySilentDataHandle ,  myFcmTokenHandle , and  myNativeTokenHandle  methods are used as callbacks for handling silent data, FCM tokens, and native tokens, respectively.
+  /// Use mySilentDataHandle to execute on background when a silent data arrives
   /// (even while terminated)
   @pragma("vm:entry-point")
   static Future<void> mySilentDataHandle(FcmSilentData silentData) async {
-    print('"SilentData": ${silentData.toString()}');
-
     if (silentData.createdLifeCycle != NotificationLifeCycle.Foreground) {
-      print("bg");
-    } else {
-      print("FOREGROUND");
-    }
+    } else {}
 
-    print('mySilentDataHandle received a FcmSilentData execution');
     await executeLongTaskInBackground();
   }
 
@@ -159,7 +153,7 @@ class NotificationController extends ChangeNotifier {
   ///  *********************************************
   ///     REQUEST NOTIFICATION PERMISSIONS
   ///  *********************************************
-
+// The  displayNotificationRationale  method shows a dialog to the user, asking for permission to send notifications
   static Future<bool> displayNotificationRationale() async {
     bool userAuthorized = false;
     BuildContext context = MyApp.navigatorKey.currentContext!;
@@ -169,23 +163,11 @@ class NotificationController extends ChangeNotifier {
           return AlertDialog(
             title: Text('Get Notified!',
                 style: Theme.of(context).textTheme.titleLarge),
-            content: Column(
+            content: const Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Image.asset(
-                        'assets/animated-bell.gif',
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                    'Allow Awesome Notifications to send you beautiful notifications!'),
+                SizedBox(height: 20),
+                Text('Allow Awesome Notifications '),
               ],
             ),
             actions: [
@@ -223,49 +205,10 @@ class NotificationController extends ChangeNotifier {
   ///     LOCAL NOTIFICATION CREATION METHODS
   ///  *********************************************
 
-  static Future<void> createNewNotification() async {
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-
-    if (!isAllowed) {
-      isAllowed = await displayNotificationRationale();
-    }
-
-    if (!isAllowed) return;
-
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: -1, // -1 is replaced by a random number
-            channelKey: 'alerts',
-            title: 'Huston! The eagle has landed!',
-            body:
-                "A small step for a man, but a giant leap to Flutter's community!",
-            bigPicture: 'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
-            largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
-            notificationLayout: NotificationLayout.BigPicture,
-            payload: {'notificationId': '1234567890'}),
-        actionButtons: [
-          NotificationActionButton(key: 'REDIRECT', label: 'Redirect'),
-          NotificationActionButton(
-              key: 'REPLY',
-              label: 'Reply Message',
-              requireInputText: true,
-              actionType: ActionType.SilentAction),
-          NotificationActionButton(
-              key: 'DISMISS',
-              label: 'Dismiss',
-              actionType: ActionType.DismissAction,
-              isDangerousOption: true)
-        ]);
-  }
-
-  static Future<void> resetBadge() async {
-    await AwesomeNotifications().resetGlobalBadge();
-  }
-
   ///  *********************************************
   ///     REMOTE TOKEN REQUESTS
   ///  *********************************************
-
+// The  requestFirebaseToken  method requests a Firebase token for the app, which can be used for sending remote notifications.
   static Future<String> requestFirebaseToken() async {
     if (await AwesomeNotificationsFcm().isFirebaseAvailable) {
       try {

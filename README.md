@@ -1,43 +1,41 @@
-Sure! Here are the instructions to run a Flutter app from GitHub:
 
-1. Clone the GitHub repository that contains the Flutter app to your local machine using Git. You can do this by opening a terminal window, navigating to the directory where you want to clone the repository, and running the following command:
 
-   ````
-   git clone <repository-url>
-   ````
+# Baynat z
 
-   Replace `<repository-url>` with the URL of the GitHub repository.
+This is a Flutter app that demonstrates the power of Firebase Cloud Messaging (FCM) notifications. With this app, you can receive and view push notifications sent from a Firebase project.
 
-2. Navigate to the root directory of the Flutter app in your terminal by running the following command:
+## Getting Started
 
-   ````
-   cd <app-directory>
-   ````
+To get started with this app, follow these steps:
 
-   Replace `<app-directory>` with the name of the directory where the Flutter app is located.
+1. Clone or download the source code from the GitHub repository.
+2. Open the project in your preferred code editor (e.g. Visual Studio Code).
+3. Run `flutter pub get` to install the dependencies.
+4. Create a Firebase project and configure it for FCM. Make sure to add the necessary configuration files to the project (e.g. `google-services.json` for Android and `GoogleService-Info.plist` for iOS).
+5. Build and run the app on your target device or emulator.
 
-3. Install the Flutter dependencies for the app by running the following command:
+## Usage
 
-   ````
-   flutter pub get
-   ````
+Once you have the app up and running, you should be able to receive push notifications sent from your Firebase project. To send a notification, you can use the Firebase console or the Firebase Cloud Messaging API or From App using Http  .
 
-   This will download and install the required packages and dependencies for the app.
+When you receive a notification, it should appear in the app's notification tray. You can tap on the notification to view its details, including the title, body, and any custom data that was included in the payload.
 
-4. Connect your Android or iOS device to your computer and make sure it is recognized by Flutter. You can check this by running the following command:
+## Features
 
-   ````
-   flutter devices
-   ````
+This app includes the following features:
 
-   This will show a list of the connected devices that can be used to run the app.
+- Firebase Cloud Messaging integration
+- Support for  Android  
+- Custom notification handling and display
+- Send notification  from  App
 
-5. Run the app on your device by running the following command:
 
-   ````
-   flutter run
-   ````
+## Video Preview
 
-   This will build and run the app on your connected device.
 
-That's it! You should now be able to run the Flutter app from GitHub on your device. If you encounter any errors or issues, make sure to check the app's documentation and requirements, and reach out to the app's developers for support.
+https://youtu.be/-nmFFbrT3Is
+
+
+
+
+https://youtu.be/IXQJMVYhc9I

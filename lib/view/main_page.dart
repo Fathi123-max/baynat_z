@@ -16,8 +16,6 @@ class MyApp extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
-  static Color mainColor = Colors.green;
-
   @override
   State<MyApp> createState() => _AppState();
 }
@@ -26,7 +24,7 @@ class _AppState extends State<MyApp> {
   // This widget is the root of your application.
 
   static const String routeHome = '/', routeNotification = '/notification-page';
-
+//initializes the NotificationController to listen for notification events and request Firebase tokens
   @override
   void initState() {
     NotificationController.startListeningNotificationEvents();
@@ -34,6 +32,7 @@ class _AppState extends State<MyApp> {
     super.initState();
   }
 
+//onGenerateInitialRoutes method is called when the app is launched and generates the initial routes for the app.
   List<Route<dynamic>> onGenerateInitialRoutes(String initialRouteName) {
     List<Route<dynamic>> pageStack = [];
     pageStack.add(
@@ -47,6 +46,7 @@ class _AppState extends State<MyApp> {
     return pageStack;
   }
 
+//onGenerateRoute method is called when a named route is requested and generates the appropriate route based on the route name.
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case routeHome:
@@ -69,7 +69,7 @@ class _AppState extends State<MyApp> {
       onGenerateInitialRoutes: onGenerateInitialRoutes,
       onGenerateRoute: onGenerateRoute,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.green,
       ),
     );
   }

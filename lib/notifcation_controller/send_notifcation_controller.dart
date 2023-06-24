@@ -22,6 +22,9 @@ class MessageChat {
   ///   TOPIC    METHODS
   /// *********************************************
   /// METHODS TO  SEND NOTIFICATION  TO GROUP OF USERS
+  ///
+
+  //subscribeToTopic  method subscribes a user to a specific topic
   static Future<void> subscribeToTopic({required String topic}) async {
     try {
       await AwesomeNotificationsFcm().subscribeToTopic(topic);
@@ -30,6 +33,7 @@ class MessageChat {
     }
   }
 
+//  unSubscribeToTopic  method unsubscribes a user from a topic
   static Future<void> unSubscribeToTopic({required String topic}) async {
     try {
       await AwesomeNotificationsFcm().unsubscribeToTopic(topic);
@@ -38,14 +42,15 @@ class MessageChat {
     }
   }
 
+// The  sendNotificationToTopic  method sends a notification to all users subscribed to a specific topic.
   static Future<void> sendNotificationToTopic(
-      {subject, title, required topic}) async {
+      {body, title, required topic}) async {
     const postUrl = 'https://fcm.googleapis.com/fcm/send';
 
     String toParams = "/topics/" + '$topic';
 
     final data = {
-      "notification": {"body": subject ?? "subject", "title": title ?? "title"},
+      "notification": {"body": body ?? "subject", "title": title ?? "title"},
       "priority": "high",
       "data": {
         "click_action": "FLUTTER_NOTIFICATION_CLICK",
@@ -80,11 +85,14 @@ class MessageChat {
   /// *********************************************
 
   /// METHODS TO  SEND NOTIFICATION  TO SPECIFIC  USER
-  static Future<void> sendSimplePushNotification(
+
+// The  sendSimplePushNotification  method sends a simple notification with a title and body to a specific user
+  static Future<void> sendSimplePushNotificationForSpecificUser(
       {required String bodyOfNotification,
       required String titleOfNotification,
       required String otherUserToken}) async {
     try {
+      print(otherUserToken);
       final body = {
         "to": otherUserToken,
         "notification": {
@@ -97,7 +105,7 @@ class MessageChat {
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.authorizationHeader:
-                'key=fDCBslUyTRS90eBRHLYLts:APA91bFU98mjAEId3NJjS66uhdvVVouC93Bn1PaCvPif8oynoBU5wimXiyFTdBOA1KCaNGYkfiTrRHdx_NRs0NFH4g0LNkJQrBicoCPUwkeu0hGVmj-0krmWz6dn6h31K1XIQ-kV7c1d'
+                'key=AAAAninzEzc:APA91bH1k4UPlUYVI7HOV7kE8yIr2mCMr5LGmN0y2GpP6ac01t32yRDyUR3JEZvZYlbebq_n9MqaibkD54dIVYCUOk6jQHcJCOsr4p6OQBt-GJk-bKmhs73_dTbQI7L6qoruJUcWz4Nt'
           },
           body: jsonEncode(body));
       log('Response status: ${res.statusCode}');
@@ -107,6 +115,7 @@ class MessageChat {
     }
   }
 
+//The  sendAdvancedPushNotification  method sends a more advanced notification with custom content and action buttons to a specific user.
   static Future<void> sendAdvancedPushNotification(
       {required String bodyOfNotification,
       required String titleOfNotification,
