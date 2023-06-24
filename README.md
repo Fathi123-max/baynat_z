@@ -1,7 +1,6 @@
 
 
 # Baynat z
-<<<  Important Note  You Should Use Your Service Key From Your Firebase project  >>>>
 
 
 This is a Flutter app that demonstrates the power of Firebase Cloud Messaging (FCM) notifications. With this app, you can receive and view push notifications sent from a Firebase project.
@@ -15,6 +14,8 @@ To get started with this app, follow these steps:
 3. Run `flutter pub get` to install the dependencies.
 4. Create a Firebase project and configure it for FCM. Make sure to add the necessary configuration files to the project (e.g. `google-services.json` for Android and `GoogleService-Info.plist` for iOS).
 5. Build and run the app on your target device or emulator.
+6. Important Note You Should Use Your Service Key From Your Firebase project 
+
 
 ## Usage
 
