@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "679308628791",
+    "project_id": "protofolio-c0043",
+    "storage_bucket": "protofolio-c0043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679308628791:android:b34366489750395d1340b2",
+        "android_client_info": {
+          "package_name": "com.example.byanat_z"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679308628791-koorh2fgku0k2dpvdp25jalcoell9d6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoIoH2664SS5kbmdWMqrIQhp8juMkmNe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679308628791-koorh2fgku0k2dpvdp25jalcoell9d6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679308628791:android:590c0ef1034e5ce21340b2",
+        "android_client_info": {
+          "package_name": "me.carda.awesome_notifications_fcm_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679308628791-koorh2fgku0k2dpvdp25jalcoell9d6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoIoH2664SS5kbmdWMqrIQhp8juMkmNe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679308628791-koorh2fgku0k2dpvdp25jalcoell9d6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
