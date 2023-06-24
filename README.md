@@ -16,7 +16,7 @@ To get started with this app, follow these steps:
 
 ## Usage
 
-Once you have the app up and running, you should be able to receive push notifications sent from your Firebase project. To send a notification, you can use the Firebase console or the Firebase Cloud Messaging API or From App using Http  .
+Once you have the app up and running, you should be able to receive push notifications sent from your Firebase project. To send a notification, you can use the Firebase console or the Firebase Cloud Messaging API or From App using HTTP .
 
 When you receive a notification, it should appear in the app's notification tray. You can tap on the notification to view its details, including the title, body, and any custom data that was included in the payload.
 
@@ -27,7 +27,7 @@ This app includes the following features:
 - Firebase Cloud Messaging integration
 - Support for  Android  
 - Custom notification handling and display
-- Send notification  from  App
+- Send notifications  from  the App
 
 
 ## Video Preview
@@ -35,7 +35,9 @@ This app includes the following features:
 
 https://youtu.be/-nmFFbrT3Is
 
+[![Watch the video](https://github.com/Fathi123-max/baynat_z/blob/main/Screenshot%202023-06-24%20at%2011.22.52.png)](https://youtu.be/-nmFFbrT3Is)
+[![Watch the video](https://github.com/Fathi123-max/baynat_z/blob/main/Screenshot%202023-06-24%20at%2011.23.30.png)](https://youtu.be/IXQJMVYhc9I
+)
 
 
 
-https://youtu.be/IXQJMVYhc9I
