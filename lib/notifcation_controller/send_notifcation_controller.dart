@@ -6,22 +6,46 @@ import 'package:awesome_notifications_fcm/awesome_notifications_fcm.dart';
 import 'package:http/http.dart';
 
 class MessageChat {
-  static Future<void> unsepscriptotopicfathi() async {
+  /// *********************************************
+  ///   SINGLETON PATTERN
+  /// *********************************************
+
+  factory MessageChat() {
+    return _chat;
+  }
+
+  static final MessageChat _chat = MessageChat._intern();
+
+  MessageChat._intern();
+
+  /// *********************************************
+  ///   TOPIC    METHODS
+  /// *********************************************
+  /// METHODS TO  SEND NOTIFICATION  TO GROUP OF USERS
+  static Future<void> subscribeToTopic({required String topic}) async {
     try {
-      await AwesomeNotificationsFcm().unsubscribeToTopic("fathi");
-      print("okkkkkkk");
+      await AwesomeNotificationsFcm().subscribeToTopic(topic);
     } catch (e) {
-      print(e);
+      log("subscribeToTopicError: $e");
     }
   }
 
-  static Future<void> sendNotificationtotopic(subject, title) async {
-    final postUrl = 'https://fcm.googleapis.com/fcm/send';
+  static Future<void> unSubscribeToTopic({required String topic}) async {
+    try {
+      await AwesomeNotificationsFcm().unsubscribeToTopic(topic);
+    } catch (e) {
+      log("unsubscribeToTopicError $e");
+    }
+  }
 
-    String toParams = "/topics/" + 'fathi';
+  static Future<void> sendNotificationToTopic(
+      {subject, title, required topic}) async {
+    const postUrl = 'https://fcm.googleapis.com/fcm/send';
+
+    String toParams = "/topics/" + '$topic';
 
     final data = {
-      "notification": {"body": subject, "title": title},
+      "notification": {"body": subject ?? "subject", "title": title ?? "title"},
       "priority": "high",
       "data": {
         "click_action": "FLUTTER_NOTIFICATION_CLICK",
@@ -45,27 +69,27 @@ class MessageChat {
         headers: headers);
 
     if (response.statusCode == 200) {
-// on success do
       print("true");
     } else {
-// on failure do
       print("false");
     }
   }
 
-  // for accessing firebase messaging (Push Notification)
-  static Future<void> sendPushNotification(String msg) async {
+  /// *********************************************
+  ///   SPECIFIC    METHODS
+  /// *********************************************
+
+  /// METHODS TO  SEND NOTIFICATION  TO SPECIFIC  USER
+  static Future<void> sendPushNotification(
+      {required String bodyOfNotification,
+      required String titleOfNotification}) async {
     try {
       final body = {
         "to":
-            "fM_dzkIKTsW-iwmw3Khe9C:APA91bEh7250OUrJZiQ7Mk0-GS9DkAcIoWiV5brRAvZKife-xWB4SWDesRiYnqWVt_ggT9JbgKpppsT0KU1UG5fnJmlTR66rk2skCWL5mkUCQzf4xGyuFDGLK7F-g0M8iFGzmmoW6sJl",
+            "fDCBslUyTRS90eBRHLYLts:APA91bFU98mjAEId3NJjS66uhdvVVouC93Bn1PaCvPif8oynoBU5wimXiyFTdBOA1KCaNGYkfiTrRHdx_NRs0NFH4g0LNkJQrBicoCPUwkeu0hGVmj-0krmWz6dn6h31K1XIQ-kV7c1d",
         "notification": {
-          "title": "push notifaction", //our name should be send
-          "body": msg,
-          // "android_channel_id": "chats"
-        },
-        "data": {
-          "some_data": "User ID: hello wolrd ",
+          "title": titleOfNotification, //our name should be send
+          "body": bodyOfNotification,
         },
       };
 
@@ -73,7 +97,7 @@ class MessageChat {
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.authorizationHeader:
-                'key=AAAAninzEzc:APA91bH1k4UPlUYVI7HOV7kE8yIr2mCMr5LGmN0y2GpP6ac01t32yRDyUR3JEZvZYlbebq_n9MqaibkD54dIVYCUOk6jQHcJCOsr4p6OQBt-GJk-bKmhs73_dTbQI7L6qoruJUcWz4Nt'
+                'key=fDCBslUyTRS90eBRHLYLts:APA91bFU98mjAEId3NJjS66uhdvVVouC93Bn1PaCvPif8oynoBU5wimXiyFTdBOA1KCaNGYkfiTrRHdx_NRs0NFH4g0LNkJQrBicoCPUwkeu0hGVmj-0krmWz6dn6h31K1XIQ-kV7c1d'
           },
           body: jsonEncode(body));
       log('Response status: ${res.statusCode}');
@@ -83,8 +107,9 @@ class MessageChat {
     }
   }
 
-  // for accessing firebase messaging (Push Notification)
-  static Future<void> sendPushNotificationwithimages() async {
+  static Future<void> sendAdvancedPushNotification(
+      {required String bodyOfNotification,
+      required String titleOfNotification}) async {
     try {
       final body = {
         "to":
@@ -93,9 +118,8 @@ class MessageChat {
         "mutable_content": true,
         "notification": {
           "badge": 42,
-          "title": "Huston! The eagle has landed!",
-          "body":
-              "A small step for a man, but a giant leap to Flutter's community!"
+          "title": titleOfNotification,
+          "body": bodyOfNotification
         },
         "data": {
           "content": {

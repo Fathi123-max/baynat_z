@@ -2,8 +2,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:awesome_notifications_fcm/awesome_notifications_fcm.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
 
 import '../view/main_page.dart';
 
@@ -126,12 +124,6 @@ class NotificationController extends ChangeNotifier {
   /// (even while terminated)
   @pragma("vm:entry-point")
   static Future<void> mySilentDataHandle(FcmSilentData silentData) async {
-    Fluttertoast.showToast(
-        msg: 'Silent data received',
-        backgroundColor: Colors.blueAccent,
-        textColor: Colors.white,
-        fontSize: 16);
-
     print('"SilentData": ${silentData.toString()}');
 
     if (silentData.createdLifeCycle != NotificationLifeCycle.Foreground) {
@@ -147,13 +139,6 @@ class NotificationController extends ChangeNotifier {
   /// Use this method to detect when a new fcm token is received
   @pragma("vm:entry-point")
   static Future<void> myFcmTokenHandle(String token) async {
-    Fluttertoast.showToast(
-        msg: 'Fcm token received',
-        backgroundColor: Colors.blueAccent,
-        textColor: Colors.white,
-        fontSize: 16);
-    debugPrint('Firebase Token:"$token"');
-
     _instance._firebaseToken = token;
     _instance.notifyListeners();
   }
@@ -161,13 +146,6 @@ class NotificationController extends ChangeNotifier {
   /// Use this method to detect when a new native token is received
   @pragma("vm:entry-point")
   static Future<void> myNativeTokenHandle(String token) async {
-    Fluttertoast.showToast(
-        msg: 'Native token received',
-        backgroundColor: Colors.blueAccent,
-        textColor: Colors.white,
-        fontSize: 16);
-    debugPrint('Native Token:"$token"');
-
     _instance._nativeToken = token;
     _instance.notifyListeners();
   }
@@ -176,14 +154,7 @@ class NotificationController extends ChangeNotifier {
   ///     BACKGROUND TASKS TEST
   ///  *********************************************
 
-  static Future<void> executeLongTaskInBackground() async {
-    print("starting long task");
-    await Future.delayed(const Duration(seconds: 4));
-    final url = Uri.parse("http://google.com");
-    final re = await http.get(url);
-    print(re.body);
-    print("long task done");
-  }
+  static Future<void> executeLongTaskInBackground() async {}
 
   ///  *********************************************
   ///     REQUEST NOTIFICATION PERMISSIONS

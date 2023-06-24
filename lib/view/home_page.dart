@@ -37,29 +37,29 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Firebase Token:',
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                '${NotificationController().firebaseToken}',
+                NotificationController().firebaseToken,
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Native Token:',
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                '${NotificationController().nativeToken}',
+                NotificationController().nativeToken,
               ),
             ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: const Text(
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
                 'Push the button to create a new local notification or reset the badge counter',
               ),
             ),
@@ -68,20 +68,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
                 onPressed: () async {
-                  MessageChat.sendPushNotification(editingController.text);
+                  MessageChat.sendPushNotification(
+                      bodyOfNotification: '', titleOfNotification: '');
                 },
-                child: Text("SendMessage")),
+                child: const Text("SendMessage")),
             ElevatedButton(
                 onPressed: () async {
-                  MessageChat.sendNotificationtotopic(
-                      "hello", "hello from mahoud ");
+                  MessageChat.sendPushNotification(
+                      bodyOfNotification: "", titleOfNotification: "");
                 },
-                child: Text("send to ")),
+                child: const Text("send to ")),
             ElevatedButton(
                 onPressed: () async {
-                  await MessageChat.unsepscriptotopicfathi();
+                  await MessageChat.unSubscribeToTopic(topic: "hello");
                 },
-                child: Text("unsepscriptotopicfathi "))
+                child: const Text("unsepscriptotopicfathi "))
           ],
         ),
       ),
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'Create New notification',
               child: const Icon(Icons.outgoing_mail),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             FloatingActionButton(
               heroTag: '1',
               onPressed: () => NotificationController.resetBadge(),
